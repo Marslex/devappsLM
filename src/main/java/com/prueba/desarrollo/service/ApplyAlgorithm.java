@@ -44,24 +44,20 @@ public class ApplyAlgorithm implements IApplyAlgorithm {
     @Override
     public double result(String expresion, Map<String,Integer> operators, List<String> characters) throws Exception {
 
-        //create a stack
         Deque<Integer> stack=new LinkedList<>();
 
-        // Scan all characters one by one
         for(int i=0;i<expresion.length();i++)
         {
             char c=expresion.charAt(i);
-            // If the scanned character is an operand (number here),
-            // push it to the stack.
+            // If the character is a number, add to stack
             if(characters.contains(String.valueOf(c))&&!operators.containsKey(String.valueOf(c))){
                 stack.push(c - '0');
             }
-                //  If the scanned character is an operator, pop two
-                // elements from stack apply the operator
+            // if is an operator then get two characters
             else if(operators.containsKey(String.valueOf(c))) {
                 int val1 = stack.pop();
                 int val2 = stack.pop();
-
+                
                 switch(c)
                 {
                     case '+':

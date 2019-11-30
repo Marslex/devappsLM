@@ -19,3 +19,7 @@ INSERT INTO valid_character(character) VALUES ('7');
 INSERT INTO valid_character(character) VALUES ('8');
 INSERT INTO valid_character(character) VALUES ('9');
 INSERT INTO valid_character(character) VALUES ('.');
+INSERT INTO valid_character(character) VALUES ('+');
+INSERT INTO valid_character(character) VALUES ('-');
+INSERT INTO valid_character(character) VALUES ('*');
+INSERT INTO valid_character(character) VALUES ('/');
