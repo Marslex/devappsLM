@@ -39,10 +39,12 @@ public class EvaluateFacade implements IEvaluateFacade{
 
         List<String> validCharactes = new ArrayList<>();
         characters.forEach(character -> validCharactes.add(character.getCharacter()));
+
+        String postfix = applyAlgorithm.aplyAlgorithm(request.getExp(),operatorCharacters,validCharactes);
         return responseDTOBuilder
                 .withInfix(request.getExp())
-                .withPostfix(applyAlgorithm.aplyAlgorithm(request.getExp(),operatorCharacters,validCharactes))
-                .withResult(applyAlgorithm.result(request.getExp()))
+                .withPostfix(postfix)
+                .withResult(applyAlgorithm.result(postfix,operatorCharacters,validCharactes))
                 .build();
     }
 }
