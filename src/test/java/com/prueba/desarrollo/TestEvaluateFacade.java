@@ -8,6 +8,7 @@ import com.prueba.desarrollo.pojo.dto.ResponseDTO;
 import com.prueba.desarrollo.pojo.repository.OperatorRepository;
 import com.prueba.desarrollo.pojo.repository.ValidCharacterRepository;
 import com.prueba.desarrollo.pojo.request.MathExpresionRequest;
+import com.prueba.desarrollo.service.ApplyAlgorithm;
 import com.prueba.desarrollo.service.IApplyAlgorithm;
 import com.prueba.desarrollo.service.OperatorService;
 import com.prueba.desarrollo.service.ValidCharacterService;
@@ -19,12 +20,12 @@ public class TestEvaluateFacade {
 
     @Test
     public void testEvaluateFacade() throws Exception {
-        String expresion = "1+8*2";
-        String output = "OUTPUT";
+        String expresion = "1+2.5/3*4";
+        String output = "12.53/4*+";
         MathExpresionRequest mathExpresionRequest = initRequest(expresion);
         OperatorRepository operatorRepository = mock(OperatorRepository.class);
         ValidCharacterRepository validCharacterRepository = mock(ValidCharacterRepository.class);
-        IApplyAlgorithm applyAlgorithm = mock(IApplyAlgorithm.class);
+        IApplyAlgorithm applyAlgorithm = new ApplyAlgorithm();
 
         IResponseDTOBuilder responseDTOBuilder = new ResponseDTOBuider();
         OperatorService operatorService = new OperatorService(operatorRepository);
@@ -32,7 +33,7 @@ public class TestEvaluateFacade {
         when(operatorRepository.findAll()).thenReturn(TestOperatorService.initList());
         when(validCharacterRepository.findAll()).thenReturn(TestValidCharacterService.initList());
 
-        when(applyAlgorithm.aplyAlgorithm(any(),any(),any())).thenReturn(output);
+        //when(applyAlgorithm.aplyAlgorithm(any(),any(),any())).thenReturn(output);
 
         IEvaluateFacade evaluateFacade = new EvaluateFacade(applyAlgorithm,responseDTOBuilder,operatorService,validCharacterService);
 
